@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>몽구스 서버</title>
+    <style>
+      table { border: 1px solid black; border-collapse: collapse; }
+      table th, table td { border: 1px solid black; }
+    </style>
+  </head>
+  <body>
+    <h3 style="display:inline;">Contact Book</h3>
+    <a href="/contacts">Index</a>
+    <a href="/contacts/new">New</a>
+    
+    <div>
+      <h1 style="color:tomato">Index</h1>
+      <form id="user-list">
+        {% for user in users %}
+        <fieldset>
+          <a href="/contacts/:id">{{user.name}}</a>
+        </fieldset>
+        {% endfor %}
+      </form>
+    
+      <h1 style="color:tomato">New</h1>
+      <form id="user-form">
+        <fieldset>
+          <p style="display:inline;">Name</p>
+          <div><input id="username" type="text"></div>
+          <p style="display:inline;">Email</p>
+          <div><input id="email" type="text"></div>
+          <p style="display:inline;">Phone</p>
+          <div><input id="phone" type="text"></div>
+          <button type="submit">submit</button>
+        </fieldset>
+      </form>
+
+      <h1 style="color:tomato">Show</h1>
+      <form id="user-show">
+        {% for user in users %}
+        <fieldset>
+          <h2>{{user.name}}</h2>
+          <p>Email:      {{user.email}}</p>
+          <p>Phone:      {{user.phone}}</p>
+        </fieldset>
+          <button type="edit">Edit</button>
+          <button type="delete">Delete</button>
+        {% endfor %}
+      </form>
+    </div>
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/mongoose.js"></script>
+  </body>
+</html>
